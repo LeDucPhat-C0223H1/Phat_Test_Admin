@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ra.Project_Final_Module4.dto.CategoryDto;
+import ra.Project_Final_Module4.model.Category;
 import ra.Project_Final_Module4.service.ICategoryService;
 
 
@@ -19,33 +20,34 @@ public class CategoryController {
 
     // Thêm mới
     @RequestMapping("/add")
-    public String showFormAddNew(Model model){
-        model.addAttribute("view","category_add");
-        model.addAttribute("category_dto", new CategoryDto());
+    public String showFormAddNewCategory(Model model){
+        model.addAttribute("view","form-add-category");
+        model.addAttribute("categoryDto", new CategoryDto());
         return "admin/index";
     }
-    @RequestMapping(value="/create" , method=RequestMethod.POST)
-    public String doAdd(@ModelAttribute CategoryDto categoryDto){
+    @RequestMapping(value="/create", method=RequestMethod.POST)
+    public String doAddNewCategory(@ModelAttribute CategoryDto categoryDto){
         categoryService.save(categoryDto);
         return "redirect:/admin/category";
     }
+
     // Cập nhật
     @RequestMapping("/edit/{id}")
-    public String showFormEdit(@PathVariable Long id, Model model){
-        model.addAttribute("view","category_edit");
-        model.addAttribute("categ",categoryService.findById(id));
+    public String showFormEditCategory(@PathVariable Long id, Model model){
+        model.addAttribute("view","form-edit-category");
+        model.addAttribute("categoryEdit",categoryService.findById(id));
         return "admin/index";
     }
-//    @RequestMapping(value = "/update" , method = RequestMethod.POST)
-//    public String doUpdate(@ModelAttribute Catalog cat){
-//        catalogService.save(cat);
-//        return "redirect:/admin/catalog";
-//    }
+    @RequestMapping(value="/update", method=RequestMethod.POST)
+    public String doUpdateCategory(@ModelAttribute Category categoryEdit){
+        categoryService.update(categoryEdit);
+        return "redirect:/admin/category";
+    }
 
-//    // Xóa
-//    @RequestMapping("/delete/{id}")
-//    public String doDelete(@PathVariable Long id){
-//        catalogService.delete(id);
-//        return "redirect:/admin/catalog";
-//    }
+    // Xóa
+    @RequestMapping("/delete/{id}")
+    public String doDeleteCategory(@PathVariable Long id){
+        categoryService.delete(id);
+        return "redirect:/admin/category";
+    }
 }

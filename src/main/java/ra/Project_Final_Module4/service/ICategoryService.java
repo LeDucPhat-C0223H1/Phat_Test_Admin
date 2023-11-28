@@ -9,5 +9,6 @@ public interface ICategoryService {
     List<Category> findAll();
     Category findById(Long id);
     void save(CategoryDto categoryDto);
+    void update(Category categoryEdit);
     void delete(Long id);
 }

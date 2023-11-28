@@ -39,7 +39,7 @@ public class CategoryDao implements ICategoryDao {
         String sql = null;
         if (category.getId() == null) {
             // thêm mới
-            sql = "{call Proce_AddNew_Category(?,?,?,?,)}";
+            sql = "{call Proce_AddNew_Category(?,?,?,?)}";
             return jdbcTemplate.update(sql,
                     category.getName(),
                     category.getDescription(),
@@ -47,13 +47,12 @@ public class CategoryDao implements ICategoryDao {
                     category.getModified_at());
         } else {
             // cập nhật
-            sql = "{call Proce_Update_Category(?,?,?,?,?,?)} ";
+            sql = "{call Proce_Update_Category(?,?,?,?,?)} ";
             return jdbcTemplate.update(sql,
                     category.getId(),
                     category.getName(),
                     category.getDescription(),
                     category.isStatus(),
-                    category.getCreated_at(),
                     category.getModified_at());
         }
     }

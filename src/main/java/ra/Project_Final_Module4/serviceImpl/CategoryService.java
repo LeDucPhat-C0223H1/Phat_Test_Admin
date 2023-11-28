@@ -32,6 +32,11 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
+    public void update(Category categoryEdit) {
+        categoryDao.save(new Category(categoryEdit.getId(), categoryEdit.getName(), categoryEdit.getDescription(),categoryEdit.isStatus(), categoryEdit.getCreated_at(), new Date()));
+    }
+
+    @Override
     public void delete(Long id) {
         categoryDao.delete(id);
     }

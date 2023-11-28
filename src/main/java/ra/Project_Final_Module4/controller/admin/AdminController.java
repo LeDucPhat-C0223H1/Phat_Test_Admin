@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ra.Project_Final_Module4.service.ICategoryService;
 
 @Controller
-@RequestMapping({"/admin",""})
+@RequestMapping({"","/admin"})
 public class AdminController {
     @Autowired
     private ICategoryService categoryService;
 
-    @RequestMapping({"/dashboard","","/"})
+    @RequestMapping({"","/dashboard"})
     public String index(Model model){
         model.addAttribute("view","dashboard");
         return "admin/index";
@@ -20,7 +20,7 @@ public class AdminController {
     @RequestMapping("/category")
     public String catalog(Model model){
         model.addAttribute("categories",categoryService.findAll());
-        model.addAttribute("view","catalog");
+        model.addAttribute("view","category");
         return "admin/index";
     }
     @RequestMapping("/product")

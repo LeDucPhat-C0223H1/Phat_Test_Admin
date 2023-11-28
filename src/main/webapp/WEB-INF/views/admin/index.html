@@ -25,21 +25,23 @@
 
 <body>
     <div class="wrapper">
+       <!-- Sidebar -->
        <nav th:insert="admin/assets/navbar :: sidebar(${view})"></nav>
 
+        <!-- Contennt -->
         <div class="main">
            <nav th:insert="admin/assets/navbar::main"></nav>
-
             <th:block th:switch="${view}">
+                <!-- 4 main page-->
                 <main th:case="dashboard" th:insert="admin/layout/index::dashboard"></main>
-                <main th:case="category" th:insert="admin/layout/category/index::catalog(${categories})"></main>
+                <main th:case="category" th:insert="admin/layout/category/index::category(${categories})"></main>
                 <main th:case="product" th:insert="admin/layout/product/index::product"></main>
                 <main th:case="user" th:insert="admin/layout/user/index::user"></main>
-                <main th:case="category_add" th:insert="admin/layout/category/add::category-add(${category_dto})"></main>
-                <main th:case="category_edit" th:insert="admin/layout/category/edit::category-edit(${categ})"></main>
-
+                <!-- page CRUD Category-->
+                <main th:case="form-add-category" th:insert="admin/layout/category/add::form-add-category(${categoryDto})"></main>
+                <main th:case="form-edit-category" th:insert="admin/layout/category/edit::form-edit-category(${categoryEdit})"></main>
             </th:block>
-
+            <!-- Footer -->
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row text-muted">
@@ -71,6 +73,7 @@
         </div>
     </div>
 
-<th:block th:insert="admin/assets/navbar::js"></th:block>
+    <!-- JavaScript -->
+    <th:block th:insert="admin/assets/navbar::js"></th:block>
 </body>
 </html>

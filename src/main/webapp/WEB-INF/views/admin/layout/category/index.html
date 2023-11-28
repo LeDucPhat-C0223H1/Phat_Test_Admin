@@ -5,11 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-<main class="content" th:fragment="category(list)">
+
+    <main class="content" th:fragment="category(list)">
     <div class="container-fluid p-0">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Category Table</h3>
+                <h3 class="card-title">Category Management</h3>
                 <nav class="navbar navbar-expand-lg bg-light">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="/category/add">
@@ -31,150 +32,30 @@
                         <th>Category ID</th>
                         <th>Name</th>
                         <th>Descripttion</th>
+                        <th>Status</th>
                         <th colspan="2">Action</th>
                     </tr>
                     </thead>
-                    <tbody>
 
-                     <tr th:each="c, loop:${list}">
-                        <td th:text="${loop.count}"></td>
+                    <tbody>
+                     <tr th:each="c, loop : ${list}">
+                        <td th:text="${c.id}"></td>
                         <td th:text="${c.name}">Category 1</td>
-                        <td th:text="${c.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
+                        <td th:text="${c.description}">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua
                         </td>
+                        <td th:text="${c.status ? 'Active' : 'Not Active'}">False</td>
                         <td>
                             <a th:href="@{/category/edit/{id}(id=${c.id})}" class="btn btn-warning">Edit</a>
                         </td>
                         <td>
-                            <a th:href="@{/category/delete/{id}(id=${c.id})}" onclick="return confirm('Bạn thực sự muốn xóa danh mục này ?')" class="btn btn-danger">Delete</a>
+                            <a th:href="@{/category/delete/{id}(id=${c.id})}"
+                               onclick="return confirm('Bạn thực sự muốn xóa danh mục này ?')"
+                               class="btn btn-danger">Delete
+                            </a>
                         </td>
                     </tr>
-                    <!-- <tr>
-                        <td>2</td>
-                        <td>Category 2</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Category 3</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Category 4</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Category 5</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Category 6</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Category 7</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Category 8</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Category 9</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Category 10</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua
-                        </td>
-                        <td>28/10/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr> -->
                     </tbody>
 
                 </table>
@@ -196,5 +77,6 @@
         </div>
     </div>
 </main>
+
 </body>
 </html>
