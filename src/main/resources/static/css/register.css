@@ -1,0 +1,23 @@
+body {
+    background: url(../images/header__banner.png);
+}
+hr {
+    border: 1px solid #0a0a0a;
+    width: 9rem;
+    margin: 0 auto;
+}
+
+.registerbtn{
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
