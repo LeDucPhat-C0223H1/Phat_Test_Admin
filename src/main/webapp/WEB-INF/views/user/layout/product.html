@@ -9,31 +9,39 @@
 
 <body>
 
-<th:block th:fragment="product(categories, products, catId, query, currentPage, size, totalPage)">
-
+<th:block th:fragment="product(categories, products, catId, query, currentPage, size, totalPage, sort)">
     <!--    <th:block th:insert="home/component/carousel::carousel"></th:block>-->
 
     <!-- Header Bottom -->
     <div class="header-bottom" id="target">
-        <th:block th:if="${catId == -1}">
-            <p th:text="'Kết quả tìm kiếm'"></p>
-        </th:block>
+        <p th:if="${query != ''}" th:text="'Kết quả tìm kiếm'"></p>
 
-        <th:block th:if="${catId == 0}">
-            <p th:text="'Tất cả thức uống'"></p>
-        </th:block>
-
-        <th:block th:unless="${catId == 0}">
-            <th:block th:each="c,loop : ${categories}">
+        <th:block th:unless="${query != ''}" >
+            <p th:if="${catId == 0}" th:text="'Tất cả thức uống'"></p>
+            <!-- -->
+            <th:block th:unless="${catId == 0}" th:each="c,loop : ${categories}">
                 <p th:if="${catId == c.id }" th:text="${c.name}"></p>
             </th:block>
         </th:block>
 
-        <div id="sortListProduct" class="header-bottom__menu-sort">Sắp xếp</div>
+        <div class="header-bottom__menu-sort">
+            Sắp xếp
+            <ul>
+                <li>
+                    <a th:href="@{|?catId=${catId}&query=${query}&page=${currentPage}&size=${size}&sort=${sort}|}">
+                    Giá tăng dần</a>
+                </li>
+                <li>
+                    <a th:href="@{|?catId=${catId}&query=${query}&page=${currentPage}&size=${size}&sort=${sort}|}">
+                    Giá giảm dần</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
-
+   <!-- Body -->
     <main>
+        <!-- Box Left-->
         <div class="main__box-left">
             <ul class="main__box-left__menu">
                 <form action="/benjuice/product" method="get" class="menu_item main__box-left__search">
@@ -45,28 +53,26 @@
                     </button>
                 </form>
 
-
                 <a href="/product" th:class="|menu_item ${catId==0 ? 'menu_item--now' : ''}|">Tất cả thức uống</a>
 
                 <th:block th:each="c,loop:${categories}">
-
                     <a th:href="|/product?catId=${c.id}|"
                        th:class="|menu_item ${catId==c.id ? 'menu_item--now' : ''}|"
                        th:text="${c.name}">
                     </a>
                 </th:block>
 
-                <li class="menu_item main__box-left__cart">
-                    <a href="/benjuice/cart">
+                <li class="menu_item main__box-left__cart" th:if="${session.userLogin != null}">
+                    <a href="/cart">
                         Giỏ hàng của bạn
                         <i class="fa-solid fa-cart-shopping fa-sm"></i>
                         <span class="main__box-left__quantity-cart">0</span>
                     </a>
                 </li>
             </ul>
-
-
         </div>
+
+        <!-- Box Right-->
         <th:block th:if="${products.size} >0">
             <div class="main__box-right">
                 <!-- products -->
@@ -78,7 +84,7 @@
                             </div>
                             <div>
                                 <h3 class="product-item__name" th:text="${p.name}"></h3>
-                                <p class="product-item__desc" th:text="${p.description}"></p>
+                                <p class="product-item__desc" th:utext="${p.description}"></p>
                             </div>
 
                             <div class="product-item__price">
@@ -91,31 +97,25 @@
                         </div>
                     </th:block>
                 </div>
-
+                <!--Pagination-->
                 <div class="main__box-right__pagination">
-
                     <a th:style="${currentPage==0 ? 'pointer-events: none' : '' }"
-                       th:href="@{|?catId=${catId}&query=${query}&page=${currentPage+(-1)}&size=${size}|}"
+                       th:href="@{|?catId=${catId}&query=${query}&page=${currentPage+(-1)}&size=${size}&sort=${sort}|}"
                     >
                         <span class="material-symbols-outlined arrow-back" style="user-select: none;">arrow_back_ios</span>
                     </a>
-
-
                     <ul>
                         <th:block th:each="page, loop : ${totalPage}">
                             <li th:class="|page-item ${currentPage==loop.index?'page--now':''}|">
-                                <a th:href="@{|?catId=${catId}&query=${query}&page=${loop.index}&size=${size}|}"
+                                <a th:href="@{|?catId=${catId}&query=${query}&page=${loop.index}&size=${size}&sort=${sort}|}"
                                    th:text="${loop.count}"></a>
                             </li>
                         </th:block>
                     </ul>
-
-
                     <a th:style="${(currentPage+1)==totalPage.length ? 'pointer-events: none' : '' }"
-                       th:href="@{|?catId=${catId}&query=${query}&page=${currentPage+1}&size=${size}|}">
+                       th:href="@{|?catId=${catId}&query=${query}&page=${currentPage+1}&size=${size}&sort=${sort}|}">
                         <span class="material-symbols-outlined arrow-forward" style="user-select: none; ">arrow_forward_ios</span>
                     </a>
-
                 </div>
 
             </div>

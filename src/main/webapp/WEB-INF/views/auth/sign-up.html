@@ -10,51 +10,60 @@
 <div class="container py-5">
     <h1 class="text-center">Sign Up</h1>
 
-    <form th:action="@{/auth/do-sign-up}" method="post" th:object="${signUpRequest}"
+    <form action="/auth/do-sign-up" method="post" th:object="${signUpRequest}"
           style="max-width: 30rem; margin: 0 auto" class="row g-3" >
         <!-- username -->
         <div class="col-12">
             <label for="username" class="form-label">Username: </label>
             <input type="text" class="form-control" th:field="*{userName}">
-            <p style="color:red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+<!--            <p style="color:red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>-->
+            <div style="color:red" th:if="${#fields.hasErrors('userName')}">
+                <span th:each="err,loop : ${#fields.errors('userName')}" th:if="${loop.count==1}" th:text="${err}"></span>
+            </div>
         </div>
         <!-- password -->
         <div class="col-md-6">
             <label for="password" class="form-label">Password: </label>
             <input type="password" class="form-control" th:field="*{password}">
-            <p style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+            <div style="color:red" th:if="${#fields.hasErrors('password')}">
+                <span th:each="err,loop : ${#fields.errors('password')}" th:if="${loop.count==1}" th:text="${err}"></span>
+            </div>
         </div>
         <!-- rePassword -->
         <div class="col-md-6">
             <label for="rePassword" class="form-label">Confirm Password: </label>
             <input type="password" class="form-control" th:field="*{rePassword}">
-            <p style="color:red" th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}"></p>
+            <div style="color:red" th:if="${#fields.hasErrors('rePassword')}">
+                <span th:each="err,loop : ${#fields.errors('rePassword')}" th:if="${loop.count==1}" th:text="${err}"></span>
+            </div>
         </div>
         <!-- fullname -->
         <div class="col-12">
             <label for="fullname" class="form-label">Fullname: </label>
             <input type="text" class="form-control" th:field="*{fullName}">
-            <p style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
+            <span style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
         </div>
         <!-- email -->
         <div class="col-12">
             <label for="email" class="form-label">Email: </label>
-            <input type="email" class="form-control" th:field="*{email}">
+            <input type="text" class="form-control" th:field="*{email}">
             <div style="color:red" th:if="${#fields.hasErrors('email')}">
-                <p th:each="err,loop : ${#fields.errors('email')}" th:if="${loop.count==1}" th:text="${err}"></p>
+                <span th:each="err,loop : ${#fields.errors('email')}" th:if="${loop.count==1}" th:text="${err}"></span>
             </div>
         </div>
         <!-- phone -->
         <div class="col-12">
             <label for="phone" class="form-label">Phone: </label>
-            <input type="number" class="form-control" th:field="*{phone}">
-            <p style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+            <input type="text" class="form-control" th:field="*{phone}">
+            <div style="color:red" th:if="${#fields.hasErrors('phone')}">
+                <span th:each="err,loop : ${#fields.errors('phone')}" th:if="${loop.count==1}" th:text="${err}"></span>
+            </div>
         </div>
         <!-- birthday -->
         <div class="col-12">
             <label for="birthday" class="form-label">Birthday: </label>
             <input type="date" class="form-control" th:field="*{birthday}">
-            <p style="color:red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></p>
+            <span style="color:red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></span>
         </div>
         <div class="col-12">
             <label for="gender" class="form-label">Gender: </label>
@@ -66,7 +75,7 @@
         <div class="col-12">
             <label for="address" class="form-label">Address: </label>
             <input type="text" class="form-control" th:field="*{address}">
-            <p style="color:red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+            <span style="color:red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
         </div>
         <div class="col-12 text-center">
             <input type="submit" class="btn btn-primary" value="REGISTER">

@@ -68,7 +68,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public List<User>   findAllAndSearchAndPagination(String query, int limit, int offset) {
+    public List<User> findAllAndSearchAndPagination(String query, int limit, int offset) {
         String sql = "{call Proce_FindAll_Search_Pagination_User(?,?,?)}";
         return jdbcTemplate.query(sql, new Object[]{query,limit,offset},(rs, rowNum) -> {
             User user = new User();
@@ -138,8 +138,13 @@ public class UserDao implements IUserDao {
 
     @Override
     public User findByUserName(String userName) {
-        String sql = "{call Proce_FindByUserName_User(?)}";
-        return jdbcTemplate.queryForObject(sql, new Object[]{userName}, new BeanPropertyRowMapper<>(User.class));
+        try{
+            String sql = "{call Proce_FindByUserName_User(?)}";
+            return jdbcTemplate.queryForObject(sql, new Object[]{userName}, new BeanPropertyRowMapper<>(User.class));
+        } catch (Exception e){
+            return null;
+        }
+
     }
 
     @Override

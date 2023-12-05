@@ -8,5 +8,9 @@ import ra.Project_Final_Module4.model.Product;
 import java.util.List;
 
 public interface IProductDao extends IGenericDao <Product, ProductResponseAdmin, Long>{
+    // bên home page
     List<ProductResponseClient> findAllActive();
+
+    List<ProductResponseClient> findAllActiveAndSort(boolean type);
+
 }

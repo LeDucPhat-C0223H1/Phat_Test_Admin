@@ -1,6 +1,7 @@
 package ra.Project_Final_Module4.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
@@ -28,4 +29,6 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
         filter.setEncoding("utf-8");
         return new Filter[]{filter};
     }
+
+
 }

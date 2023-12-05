@@ -12,6 +12,8 @@ import ra.Project_Final_Module4.dto.response.UserEditResponse;
 import ra.Project_Final_Module4.model.User;
 import ra.Project_Final_Module4.service.IUserService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -36,22 +38,29 @@ public class UserService implements IUserService {
 
     @Override
     public void register(SignUpRequest signUpRequest) {
-        userDao.save(
-                new User(
-                        signUpRequest.getUserName(),
-                        BCrypt.hashpw(signUpRequest.getPassword(),BCrypt.gensalt(12)),
-                        //
-                        signUpRequest.getFullName(),
-                        signUpRequest.getEmail(),
-                        signUpRequest.getPhone(),
-                        signUpRequest.getBirthday(),
-                        signUpRequest.getGender(),
-                        signUpRequest.getAddress(),
-                        //
-                        new Date(),
-                        new Date()
-                )
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date birthday = format.parse(signUpRequest.getBirthday());
+            userDao.save(
+                    new User(
+                            signUpRequest.getUserName(),
+                            BCrypt.hashpw(signUpRequest.getPassword(),BCrypt.gensalt(12)),
+                            //
+                            signUpRequest.getFullName(),
+                            signUpRequest.getEmail(),
+                            signUpRequest.getPhone(),
+                            birthday,
+                            signUpRequest.getGender(),
+                            signUpRequest.getAddress(),
+                            //
+                            new Date(),
+                            new Date()
+                    )
         );
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
@@ -60,7 +69,7 @@ public class UserService implements IUserService {
         if (userLogin != null && BCrypt.checkpw(loginRequest.getPassword(),userLogin.getPassword())){
             return userLogin;
         }
-        return  null;
+        return null;
     }
 
     @Override

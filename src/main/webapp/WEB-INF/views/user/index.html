@@ -31,7 +31,7 @@
 <th:block th:switch="${view}">
     <th:block th:case="home" th:insert="user/layout/home::home"></th:block>
     <th:block th:case="about-us" th:insert="user/layout/about-us::about-us"></th:block>
-    <th:block th:case="product" th:insert="user/layout/product::product(${categories}, ${products}, ${catId}, ${query}, ${currentPage}, ${size}, ${totalPage})"></th:block>
+    <th:block th:case="product" th:insert="user/layout/product::product(${categories}, ${products}, ${catId}, ${query}, ${currentPage}, ${size}, ${totalPage}, ${sort})"></th:block>
     <th:block th:case="cart" th:insert="user/layout/cart::cart"></th:block>
 
     <th:block th:case="profile" th:insert="user/layout/profile::profile(${userEdit})"></th:block>

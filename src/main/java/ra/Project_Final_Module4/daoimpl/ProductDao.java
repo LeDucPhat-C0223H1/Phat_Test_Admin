@@ -35,22 +35,6 @@ public class ProductDao implements IProductDao {
             return product;
         });
     }
-    @Override
-    public List<ProductResponseClient> findAllActive() {
-        String sql = "{call Proce_FindAll_Product_Active()}";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            ProductResponseClient product = new ProductResponseClient();
-            product.setId(rs.getLong("id"));
-            product.setCategoryId(rs.getLong("categoryId"));
-            product.setName(rs.getString("name"));
-            product.setImageUrl(rs.getString("image_Url"));
-            product.setDescription(rs.getString("description"));
-            product.setPrice(rs.getBigDecimal("price"));
-            product.setStock(rs.getInt("stock"));
-            return product;
-        });
-    }
-
 
     @Override
     public List<ProductResponseAdmin> findAllAndSearch(String query) {
@@ -127,5 +111,38 @@ public class ProductDao implements IProductDao {
         return jdbcTemplate.update(sql, id);
     }
 
+
+    // bên home page
+    @Override
+    public List<ProductResponseClient> findAllActive() {
+        String sql = "{call Proce_FindAll_Product_Active()}";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            ProductResponseClient product = new ProductResponseClient();
+            product.setId(rs.getLong("id"));
+            product.setCategoryId(rs.getLong("categoryId"));
+            product.setName(rs.getString("name"));
+            product.setImageUrl(rs.getString("image_Url"));
+            product.setDescription(rs.getString("description"));
+            product.setPrice(rs.getBigDecimal("price"));
+            product.setStock(rs.getInt("stock"));
+            return product;
+        });
+    }
+
+    @Override
+    public List<ProductResponseClient> findAllActiveAndSort(boolean type) {
+        String sql = "{call Proce_FindAll_Product_Active_And_Search(?)}";
+        return jdbcTemplate.query(sql,new Object[]{type}, (rs, rowNum) -> {
+            ProductResponseClient product = new ProductResponseClient();
+            product.setId(rs.getLong("id"));
+            product.setCategoryId(rs.getLong("categoryId"));
+            product.setName(rs.getString("name"));
+            product.setImageUrl(rs.getString("image_Url"));
+            product.setDescription(rs.getString("description"));
+            product.setPrice(rs.getBigDecimal("price"));
+            product.setStock(rs.getInt("stock"));
+            return product;
+        });
+    }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -27,7 +28,8 @@ import javax.sql.DataSource;
         "ra.Project_Final_Module4.controller",
         "ra.Project_Final_Module4.daoimpl",
         "ra.Project_Final_Module4.serviceimpl",
-        "ra.Project_Final_Module4.config"})
+        "ra.Project_Final_Module4.config",
+        "ra.Project_Final_Module4.validate"})
 public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     // cấu hình JSP
 //    @Bean
@@ -116,5 +118,10 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public JdbcTemplate jdbcTemplate(){
         return new JdbcTemplate(dataSource());
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/admin/**");
     }
 }

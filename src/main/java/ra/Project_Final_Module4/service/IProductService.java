@@ -20,6 +20,6 @@ public interface IProductService {
     int getTotalPageAdmin(String query,int size);
 
     //HomePage
-    List<ProductResponseClient> findAllProductByCategoryAndPagination(Long catId, String query, int page, int size);
-    int getTotalPageClient(Long catId, String query, int size);
+    List<ProductResponseClient> findAllProductByCategoryAndSortAndPagination(Long catId, Boolean typeSort, String query, int page, int size);
+    int getTotalPageClient(Long catId, Boolean typeSort, String query, int size);
 }

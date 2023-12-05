@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ra.Project_Final_Module4.dao.IProductDao;
+import ra.Project_Final_Module4.daoimpl.ProductDao;
 import ra.Project_Final_Module4.dto.request.ProductRequest;
 import ra.Project_Final_Module4.dto.response.ProductResponseAdmin;
 import ra.Project_Final_Module4.dto.response.ProductResponseClient;
@@ -82,46 +83,70 @@ public class ProductServive implements IProductService {
 
     // HomePage
     @Override
-    public List<ProductResponseClient> findAllProductByCategoryAndPagination(Long catId, String query, int page, int size) {
-        if (catId == -1) {
-            return productDao.findAllActive().stream()
-                    .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase()))
-                    .skip(page * size).limit(size).collect(Collectors.toList());
-        } else if (catId == 0) {
-            return productDao.findAllActive().stream()
-                    .skip(page * size).limit(size).collect(Collectors.toList());
-        } else {
-            return productDao.findAllActive().stream()
-                    .filter(p -> p.getCategoryId() == catId)
-                    .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase()))
-                    .skip(page * size).limit(size).collect(Collectors.toList());
+    public List<ProductResponseClient> findAllProductByCategoryAndSortAndPagination(Long catId, Boolean typeSort, String query, int page, int size) {
+        if(typeSort == null){
+            if (catId == 0) {
+                return productDao.findAllActive().stream()
+                        .skip(page * size).limit(size).collect(Collectors.toList());
+            } else {
+                return productDao.findAllActive().stream()
+                        .filter(p -> p.getCategoryId() == catId)
+                        .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase()))
+                        .skip(page * size).limit(size).collect(Collectors.toList());
+            }
         }
+        else {
+            if (catId == 0) {
+                return productDao.findAllActiveAndSort(typeSort).stream()
+                        .skip(page * size).limit(size).collect(Collectors.toList());
+            } else {
+                return productDao.findAllActiveAndSort(typeSort).stream()
+                        .filter(p -> p.getCategoryId() == catId)
+                        .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase()))
+                        .skip(page * size).limit(size).collect(Collectors.toList());
+            }
+        }
+
+
     }
 
     @Override
-    public int getTotalPageClient(Long catId, String query,  int size) {
-        if(catId == -1){
-            int count = (int) productDao.findAllActive().stream().filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase())).count();
-            if (count % size == 0) {
-                return count / size;
-            }
-            return count / size + 1;
-        } else if (catId == 0) {
-            int count = productDao.findAllActive().size();
-            if (count % size == 0) {
-                return count / size;
-            }
-            return count / size + 1;
-        } else {
-            int count = (int) productDao.findAllActive().stream()
-                    .filter(p -> p.getCategoryId() == catId)
-                    .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase()))
-                    .count();
-            if (count % size == 0) {
-                return count / size;
-            }
-            return count / size + 1;
-        }
+    public int getTotalPageClient(Long catId, Boolean typeSort, String query,  int size) {
+         if(typeSort == null){
+             if (catId == 0) {
+                 int count = productDao.findAllActive().size();
+                 if (count % size == 0) {
+                     return count / size;
+                 }
+                 return count / size + 1;
+             } else {
+                 int count = (int) productDao.findAllActive().stream()
+                         .filter(p -> p.getCategoryId() == catId)
+                         .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase()))
+                         .count();
+                 if (count % size == 0) {
+                     return count / size;
+                 }
+                 return count / size + 1;
+             }
+         }else {
+             if (catId == 0) {
+                 int count = productDao.findAllActiveAndSort(typeSort).size();
+                 if (count % size == 0) {
+                     return count / size;
+                 }
+                 return count / size + 1;
+             } else {
+                 int count = (int) productDao.findAllActiveAndSort(typeSort).stream()
+                         .filter(p -> p.getCategoryId() == catId)
+                         .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase()))
+                         .count();
+                 if (count % size == 0) {
+                     return count / size;
+                 }
+                 return count / size + 1;
+             }
+         }
 
     }
 }
