@@ -12,13 +12,14 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="/img/icons/icon-48x48.png" />
-
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-    <title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+    <title>Ben Juice</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="/css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -33,13 +34,16 @@
            <nav th:insert="admin/assets/navbar::main"></nav>
             <th:block th:switch="${view}">
                 <!-- 4 main page-->
-                <main th:case="dashboard" th:insert="admin/layout/index::dashboard"></main>
-                <main th:case="category" th:insert="admin/layout/category/index::category(${categories})"></main>
-                <main th:case="product" th:insert="admin/layout/product/index::product"></main>
-                <main th:case="user" th:insert="admin/layout/user/index::user"></main>
+                <main th:case="dashboard" th:insert="admin/layout/dashboard/index::dashboard"></main>
+                <main th:case="category" th:insert="admin/layout/category/index::category(${categories}, ${query}, ${currentPage}, ${size}, ${totalPage})"></main>
+                <main th:case="product" th:insert="admin/layout/product/index::product(${products}, ${query}, ${currentPage}, ${size}, ${totalPage})"></main>
+                <main th:case="user" th:insert="admin/layout/user/index::user(${users}, ${query}, ${currentPage}, ${size}, ${totalPage})"></main>
                 <!-- page CRUD Category-->
-                <main th:case="form-add-category" th:insert="admin/layout/category/add::form-add-category(${categoryDto})"></main>
+                <main th:case="form-add-category" th:insert="admin/layout/category/add::form-add-category(${categoryRequest})"></main>
                 <main th:case="form-edit-category" th:insert="admin/layout/category/edit::form-edit-category(${categoryEdit})"></main>
+                <!-- page CRUD Product-->
+                <main th:case="form-add-product" th:insert="admin/layout/product/add::form-add-product(${productRequest}, ${categories})"></main>
+                <main th:case="form-edit-product" th:insert="admin/layout/product/edit::form-edit-product(${productEdit}, ${categories})"></main>
             </th:block>
             <!-- Footer -->
             <footer class="footer">

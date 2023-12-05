@@ -4,6 +4,18 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/assets/navbar.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/assets" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/index.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/catalog/edit.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/catalog" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/category/add.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/category" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/product/add.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/product" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/product/edit.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/product" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/product/index.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/product" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/user/index.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/auth/login.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/auth" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/auth/sign-up.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/auth" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/index.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/layout/profile.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/layout" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/layout/profile.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/layout" />
       </map>
     </option>
   </component>

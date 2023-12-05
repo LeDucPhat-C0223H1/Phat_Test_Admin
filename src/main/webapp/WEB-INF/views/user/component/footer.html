@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ben Juice</title>
+</head>
+
+<body>
+
+
+    <th:block th:fragment="footer">
+        <div class="footer__box-left">
+            <img src="/images/logo_03.png" alt="ảnh logo">
+            <p style="text-align: justify;">Cam kết cung cấp những thức uống bổ dưỡng từ nguyên liệu tươi sạch, đảm bảo an toàn chất lượng đến quý khách.</p>
+        </div>
+        <div class="footer__box-center">
+            <h3>NỘI DUNG</h3>
+            <ul class="quick-menu">
+                <a class="quick-menu__item" href="#">Trang chủ</a>
+                <a class="quick-menu__item" href="#">Sản phẩm</a>
+                <a class="quick-menu__item" href="#">Giới thiệu</a>
+                <a class="quick-menu__item" href="#">Blog</a>
+            </ul>
+        </div>
+        <div class="footer__box-contact">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <ul class="quick-menu">
+                <li>
+                    <i class="fa-solid fa-location-dot"></i>&nbsp&nbsp
+                    Số 69, Đường Trương Quốc Dung, P.10, Q.Phú Nhuận, Tp.HCM
+                </li>
+                <li><i class="fa-solid fa-phone"></i>&nbsp&nbsp
+                    (028) 3 8475 687
+                </li>
+                <li>
+                    <i class="fa-solid fa-envelope"></i>&nbsp&nbsp
+                    phatjuicebar@gmail.com</li>
+                <li>
+                    <i class="fa-solid fa-car"></i>&nbsp&nbsp
+                    Có chỗ đỗ xe hơi
+                </li>
+            </ul>
+        </div>
+        <div class="footer__box-right">
+            <h3>LIÊN HỆ</h3>
+            <form action="">
+                <input type="text" placeholder="Địa chỉ email">
+                <button type="button">Nhận tin</button>
+            </form>
+        </div>
+    </th:block>
+
+
+</body>
+</html>

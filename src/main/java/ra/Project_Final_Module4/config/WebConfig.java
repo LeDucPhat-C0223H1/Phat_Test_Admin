@@ -11,29 +11,22 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
-import ra.Project_Final_Module4.dao.ICategoryDao;
-import ra.Project_Final_Module4.daoImpl.CategoryDao;
-import ra.Project_Final_Module4.service.ICategoryService;
-import ra.Project_Final_Module4.serviceImpl.CategoryService;
 
 import javax.sql.DataSource;
-import java.util.Scanner;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {
         "ra.Project_Final_Module4.controller",
-        "ra.Project_Final_Module4.daoImpl",
-        "ra.Project_Final_Module4.serviceImpl",
+        "ra.Project_Final_Module4.daoimpl",
+        "ra.Project_Final_Module4.serviceimpl",
         "ra.Project_Final_Module4.config"})
 public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     // cấu hình JSP
@@ -80,15 +73,17 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
     /**************************************************************************************************/
-    // cấu hình đường dẫn resource
+//     cấu hình đường dẫn resource
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**","/js/**","/img/**")
+        registry.addResourceHandler("/css/**","/js/**","/img/**","/images/**")
                 .addResourceLocations(
                         "classpath:static/css/",
                         "classpath:static/js/",
-                        "classpath:static/img/");
+                        "classpath:static/img/",
+                        "classpath:static/images/");
     }
+
 
     // cấu hình file upload lên server
     @Bean(name = "multipartResolver")

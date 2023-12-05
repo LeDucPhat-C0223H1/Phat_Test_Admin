@@ -56,9 +56,15 @@
 
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                    data-bs-toggle="dropdown">
-                    <img src="/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
-                         alt="Charles Hall" />
-                    <span class="text-dark">Chris Hung</span>
+                    <th:block th:if="${session.userLogin}==null">
+                        <img src="" class="avatar img-fluid rounded me-1" alt=""/>
+                        <span class="text-dark">Not Found</span>
+                    </th:block>
+                    <th:block th:unless="${session.userLogin}==null">
+                        <img th:src="${session.userLogin.avatarUrl}" class="avatar img-fluid rounded me-1" alt=""/>
+                        <span class="text-dark" th:text="|Admin ${session.userLogin.fullName}|"></span>
+                    </th:block>
+
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i>
@@ -69,7 +75,7 @@
 
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Log out</a>
+                    <a class="dropdown-item" href="/auth/logout" onclick="return confirm('Bạn thực sự muốn đăng xuất ?')">Log out</a>
                 </div>
             </li>
         </ul>
@@ -302,3 +308,4 @@
 </th:block>
 </body>
 </html>
+https://firebasestorage.googleapis.com/v0/b/project-final-module4.appspot.com/o/admin-default-%20avatar.jpg?alt=media&token=c0980bce-89a2-48e5-a92f-a428735f4e8f

@@ -4,53 +4,86 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class User {
-    private long id;
-    private String username;
+    private Long id;
+    private String userName;
     private String password;
+    private String avatarUrl;
     //--------------------
     private String fullName;
     private String email;
     private String phone;
     private Date birthday;
+    private Boolean gender;
     private String address;
     private boolean role = false;
     private boolean status = true;
     //--------------------
-    private Date created_at;
-    private Date modified_at;
+    private Date createdAt;
+    private Date modifiedAt;
 
     public User() {
     }
 
-    public User(long id, String username, String password, String fullName, String email, String phone, Date birthday, String address, boolean role, boolean status, Date created_at, Date modified_at) {
-        this.id = id;
-        this.username = username;
+    // constructor thêm mới
+    public User(String userName, String password, String fullName, String email, String phone, Date birthday, Boolean gender, String address, Date createdAt, Date modifiedAt) {
+        this.userName = userName;
         this.password = password;
+        this.fullName = fullName;
+        this.avatarUrl=  "https://firebasestorage.googleapis.com/v0/b/project-final-module4.appspot.com/o/user-default-avatar.jpg?alt=media&token=5a38854d-1427-47ab-98f7-9f6dbeb2428b";
+        this.email = email;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.address = address;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+    }
+
+    // constructor edit
+    public User(Long id, String avatarUrl, String fullName, String email, String phone, Date birthday, Boolean gender, String address, Date modifiedAt) {
+        this.id = id;
+        this.avatarUrl = avatarUrl;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.birthday = birthday;
+        this.gender = gender;
+        this.address = address;
+        this.modifiedAt = modifiedAt;
+    }
+
+    // constructor full tham số
+    public User(Long id, String userName, String password, String avatarUrl, String fullName, String email, String phone, Date birthday, Boolean gender, String address, boolean role, boolean status, Date createdAt, Date modifiedAt) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.avatarUrl = avatarUrl;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.gender = gender;
         this.address = address;
         this.role = role;
         this.status = status;
-        this.created_at = created_at;
-        this.modified_at = modified_at;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -59,6 +92,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public String getFullName() {
@@ -93,6 +134,14 @@ public class User {
         this.birthday = birthday;
     }
 
+    public Boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(Boolean gender) {
+        this.gender = gender;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -117,19 +166,20 @@ public class User {
         this.status = status;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getModified_at() {
-        return modified_at;
+    public Date getModifiedAt() {
+        return modifiedAt;
     }
 
-    public void setModified_at(Date modified_at) {
-        this.modified_at = modified_at;
+    public void setModifiedAt(Date modifiedAt) {
+        this.modifiedAt = modifiedAt;
     }
+
 }

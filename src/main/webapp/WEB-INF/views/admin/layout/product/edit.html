@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ben Juice</title>
+</head>
+<body>
+<main class="content" th:fragment="form-edit-product(productEdit, categories)">
+
+  <div class="container-fluid p-0">
+    <div class="card">
+      <h1 class="text-center mt-3">Edit Product</h1>
+      <form th:action="@{/product/update}" method="post" th:object="${productEdit}" enctype="multipart/form-data"
+            style="max-width: 30rem; margin: 0 auto" class="p-4 mt-2">
+        <div class="mb-3">
+          <label for="id" class="form-label">Product Id</label>
+          <input type="number" class="form-control" th:field="*{id}" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Product Name</label>
+          <input type="text" class="form-control" th:field="*{name}">
+        </div>
+        <div class="mb-3">
+          <label for="categoryName" class="form-label">Category</label>
+          <select class="form-select" aria-label="Default select example" th:field="*{categoryId}">
+            <th:block th:each="c,loop : ${categories}">
+              <option th:text="${c.name}" th:value="${c.id}"></option>
+            </th:block>
+          </select>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="fileImage" class="form-label">File Image</label>
+          <div class="d-flex flex-column">
+            <div class=" d-flex gap-3 align-items-baseline">
+              <p class="me-5">Current Image: </p>
+              <img th:src="*{imageUrl}" class="w-25" alt="Not Found Image">
+            </div>
+            <input type="hidden" name="imageUrl" th:value="*{imageUrl}">
+          </div>
+          <input type="file" class="form-control" name="fileImage">
+        </div>
+
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Descriptions</label>
+          <textarea class="form-control" rows="3" th:field="*{description}"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input type="number" min="0" class="form-control" th:field="*{price}">
+        </div>
+        <div class="mb-3">
+          <label for="stock" class="form-label">Stock</label>
+          <input type="number" class="form-control" th:field="*{stock}">
+        </div>
+
+        <div class="mb-3">
+          <label for="status" class="form-label">Status</label>
+          <select class="form-select" aria-label="Default select example" th:field="*{status}">
+            <option value="true">Active</option>
+            <option value="false">Not Active</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="modifiedAt" class="form-label">Last Update</label>
+          <input type="text"  th:value="${#dates.format(productEdit.modifiedAt, 'HH:mm:ss dd/MM/yyyy')}" class="form-control" disabled >
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success">Edit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>

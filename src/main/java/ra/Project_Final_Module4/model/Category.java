@@ -8,26 +8,28 @@ public class Category {
     private String description;
     private boolean status;
     //--------------------
-    private Date created_at;
-    private Date modified_at;
+    private Date createdAt;
+    private Date modifiedAt;
 
     public Category() {
     }
 
-    public Category(String name, String description, Date created_at, Date modified_at) {
+    // constructor thêm mới
+    public Category(String name, String description, Date createdAt, Date modifiedAt) {
         this.name = name;
         this.description = description;
-        this.created_at = created_at;
-        this.modified_at = modified_at;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
     }
 
-    public Category(Long id, String name, String description, boolean status, Date created_at, Date modified_at) {
+    // constructor full tham số
+    public Category(Long id, String name, String description, boolean status, Date createdAt, Date modifiedAt) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
-        this.created_at = created_at;
-        this.modified_at = modified_at;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
     }
 
     public Long getId() {
@@ -62,19 +64,19 @@ public class Category {
         this.status = status;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getModified_at() {
-        return modified_at;
+    public Date getModifiedAt() {
+        return modifiedAt;
     }
 
-    public void setModified_at(Date modified_at) {
-        this.modified_at = modified_at;
+    public void setModifiedAt(Date modifiedAt) {
+        this.modifiedAt = modifiedAt;
     }
 }

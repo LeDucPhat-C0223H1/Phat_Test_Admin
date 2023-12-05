@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<main th:fragment="profile(userEdit)" style="background-color: #ffffff">
+
+    <div class="container py-5" style="margin-top: 3.8rem">
+        <h1 class="text-center">Information Account</h1>
+
+        <form th:action="@{/user/update}" method="post" th:object="${userEdit}" enctype="multipart/form-data"
+              class="row g-3" style="max-width: 30rem; margin: 0 auto">
+            <input type="hidden" th:field="*{id}">
+            <div class="col-12">
+                <label for="fullname" class="form-label">Fullname: </label>
+                <input type="text" class="form-control" th:field="*{fullName}">
+            </div>
+            <!-- email -->
+            <div class="col-12">
+                <label for="email" class="form-label">Email: </label>
+                <input type="email" class="form-control" th:field="*{email}">
+            </div>
+            <!-- avatar -->
+            <div class="col-12">
+                <label for="fileAvatar" class="form-label">File Avatar</label>
+                <div class="d-flex flex-column">
+                    <div class=" d-flex gap-3 align-items-baseline">
+                        <p class="me-5">Current Avatar: </p>
+                        <img th:src="*{avatarUrl}" class="w-25" alt="Not Found Avatar">
+                    </div>
+                    <input type="hidden" name="avatarUrl" th:value="*{avatarUrl}">
+                </div>
+                <input type="file" class="form-control" name="fileAvatar">
+            </div>
+            <!-- phone -->
+            <div class="col-12">
+                <label for="phone" class="form-label">Phone: </label>
+                <input type="number" class="form-control" th:field="*{phone}">
+            </div>
+            <!-- birthday -->
+            <div class="col-12">
+                <label for="birthday" class="form-label">Birthday: </label>
+                <input type="date" class="form-control" name="birthday"
+                th:value="${#dates.format(userEdit.birthday, 'yyyy-MM-dd')}">
+            </div>
+            <div class="col-12">
+                <label for="gender" class="form-label">Gender: </label>
+                <select class="form-select" aria-label="Default select example" th:field="*{gender}">
+                    <option value="true">Male</option>
+                    <option value="false">Female</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="address" class="form-label">Address: </label>
+                <input type="text" class="form-control" th:field="*{address}">
+            </div>
+            <div class="col-12">
+                <label for="modifiedAt" class="form-label">Last Update</label>
+                <input type="d"  th:value="${#dates.format(userEdit.modifiedAt, 'HH:mm:ss dd/MM/yyyy')}" class="form-control" disabled >
+            </div>
+            <div class="col-12 text-center">
+                <input type="submit" class="btn btn-primary" value="Save">
+            </div>
+        </form>
+    </div>
+
+</main>
+</body>
+</html>

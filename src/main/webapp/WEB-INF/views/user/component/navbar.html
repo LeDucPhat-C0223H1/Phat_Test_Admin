@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ben Juice</title>
+</head>
+<body>
+
+<th:block th:fragment="navbar(view)">
+    <script>
+        function displayUserInfor(){
+            let str =(document.getElementsByClassName("header-top__userInfor")[0].attributes.item(1).value);
+            console.log(str);
+            if (str.match("display: none;")) {
+                document.getElementsByClassName("header-top__userInfor")[0].style.display = "block";
+            } else {
+                document.getElementsByClassName("header-top__userInfor")[0].style.display = "none";
+
+            }
+        }
+    </script>
+    <header>
+        <!-- Header Top -->
+        <div class="header-top">
+            <div class="header-top__logo">
+                <img src="/images/logo_03.png" alt="LOGO">
+            </div>
+            <div class="header-top__navbar">
+                <a class="header-top__navbar-item" href="/benjuice/home">Trang chủ</a>
+                <a class="header-top__navbar-item" href="/benjuice/product">Sản phẩm</a>
+                <a class="header-top__navbar-item" href="/benjuice/about-us">Giới thiệu</a>
+                <a class="header-top__navbar-item" href="#">Blog</a>
+            </div>
+
+            <div class="header-top__actions">
+                <th:block th:if="${session.userLogin}==null">
+                    <a class="header-top__login" href="/auth/login">Đăng nhập</a>
+                    <a class="header-top__register" href="/auth/sign-up">Đăng ký</a>
+                </th:block>
+
+                <th:block th:unless="${session.userLogin}==null">
+                    <a href="/benjuice/cart"><img class="header-top__cart" src="/images/cart.png" alt="CART"></a>
+                    <span class="header-top__quantity-cart">0</span>
+                    <img class="header-top__user" onclick="displayUserInfor()" src="/images/header__user.png"
+                         alt="USER">
+
+                    <div class="header-top__userInfor" style="display: none;">
+                        <div>
+                            <a th:href="@{/user/profile/{id} (id=${session.userLogin.getId()})}">Tài khoản</a>
+                            <a href="/auth/logout" onclick="return confirm('Bạn thực sự muốn đăng xuất ?')">Đăng xuất</a>
+                        </div>
+                    </div>
+                </th:block>
+
+
+            </div>
+        </div>
+
+        <th:block th:if="${view} eq 'home' or ${view} eq 'product'"
+                  th:insert="user/component/carousel::carousel"></th:block>
+    </header>
+</th:block>
+
+</body>
+</html>

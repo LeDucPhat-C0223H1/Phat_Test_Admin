@@ -1,50 +1,66 @@
 package ra.Project_Final_Module4.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 
 public class Product {
-    private long id;
-    private long category_id;
+    private Long id;
+    private Long categoryId;
     private String name;
+    private String imageUrl;
     private String description;
-    private double price;
-    private int stock;
+    private BigDecimal price;
+    private Integer stock;
     private boolean status = true;
     //--------------------
-    private Date created_at;
-    private Date modified_at;
+    private Date createdAt;
+    private Date modifiedAt;
 
 
     public Product() {
     }
 
-    public Product(long id, long category_id, String name, String description, double price, int stock, boolean status, Date created_at, Date modified_at) {
-        this.id = id;
-        this.category_id = category_id;
+    // constructer thêm mới
+    public Product(Long categoryId, String name, String imageUrl, String description, BigDecimal price, Integer stock, Date createdAt, Date modifiedAt) {
+        this.categoryId = categoryId;
         this.name = name;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+    }
+
+    // constructer full tham số
+    public Product(Long id, Long categoryId, String name, String imageUrl, String description, BigDecimal price, Integer stock, boolean status, Date createdAt, Date modifiedAt) {
+        this.id = id;
+        this.categoryId = categoryId;
+        this.name = name;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.price = price;
         this.stock = stock;
         this.status = status;
-        this.created_at = created_at;
-        this.modified_at = modified_at;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getCategory_id() {
-        return category_id;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(long category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -55,6 +71,14 @@ public class Product {
         this.name = name;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -63,19 +87,19 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
@@ -87,19 +111,19 @@ public class Product {
         this.status = status;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getModified_at() {
-        return modified_at;
+    public Date getModifiedAt() {
+        return modifiedAt;
     }
 
-    public void setModified_at(Date modified_at) {
-        this.modified_at = modified_at;
+    public void setModifiedAt(Date modifiedAt) {
+        this.modifiedAt = modifiedAt;
     }
 }

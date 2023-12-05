@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ben Juice</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" th:fragment="navbar(view)">
+  <div class="container-fluid d-flex justify-content-between" style="background: orange">
+    <a class="navbar-brand" href="#">
+      <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      Navbar
+    </a>
+    <div class="" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link fs-5 fw-medium"  th:href="@{/benjuice/home}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5 fw-medium" href="/benjuice/product">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5 fw-medium"  href="/benjuice/about-us">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5 fw-medium" href="/benjuice/profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5 fw-medium" href="/benjuice/cart">Cart</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-brand d-flex align-items-center gap-3">
+
+      <th:block th:if="${session.userLogin}==null">
+        <a href="/auth/login" class="btn" style="background: #FFCC33">Log In</a>
+        <a href="/auth/sign-up" class="btn" style="background: #FFCC33">Sign Up</a>
+      </th:block>
+
+      <th:block th:unless="${#session.getAttribute('userLogin')}==null">
+        <div class="btn" style="background: #FFCC33" th:text="${session.userLogin.fullName}">Log In</div>
+        <a href="/auth/logout" class="btn" style="background: #FFCC33"
+           onclick="return confirm('Bạn thực sự muốn đăng xuất ?')"
+        >
+          Logout
+        </a>
+      </th:block>
+
+    </div>
+  </div>
+</nav>
+
+</body>
+</html>
+
