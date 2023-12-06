@@ -1,5 +1,6 @@
 package ra.Project_Final_Module4.model;
 
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
@@ -7,6 +8,7 @@ import java.util.Date;
 public class Product {
     private Long id;
     private Long categoryId;
+    @NotBlank (message = "Cannot be left blank!")
     private String name;
     private String imageUrl;
     private String description;

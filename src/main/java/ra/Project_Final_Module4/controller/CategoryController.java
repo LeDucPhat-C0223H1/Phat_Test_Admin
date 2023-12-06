@@ -3,6 +3,7 @@ package ra.Project_Final_Module4.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ra.Project_Final_Module4.dto.request.CategoryRequest;
 import ra.Project_Final_Module4.model.Category;
 import ra.Project_Final_Module4.service.ICategoryService;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -26,7 +29,11 @@ public class CategoryController {
         return "admin/index";
     }
     @RequestMapping(value="/create", method=RequestMethod.POST)
-    public String doAddNewCategory(@ModelAttribute CategoryRequest categoryRequest){
+    public String doAddNewCategory(@ModelAttribute("categoryRequest") @Valid CategoryRequest categoryRequest, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("view","form-add-category");
+            return "admin/index";
+        }
         categoryService.save(categoryRequest);
         return "redirect:/admin/category";
     }
@@ -40,7 +47,11 @@ public class CategoryController {
         return "admin/index";
     }
     @RequestMapping(value="/update", method=RequestMethod.POST)
-    public String doUpdateCategory(@ModelAttribute Category categoryEdit){
+    public String doUpdateCategory(@ModelAttribute("categoryEdit") @Valid Category categoryEdit, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("view","form-edit-category");
+            return "admin/index";
+        }
         categoryService.update(categoryEdit);
         return "redirect:/admin/category";
     }

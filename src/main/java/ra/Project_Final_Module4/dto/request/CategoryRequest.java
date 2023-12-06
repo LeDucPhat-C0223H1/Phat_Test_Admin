@@ -1,6 +1,9 @@
 package ra.Project_Final_Module4.dto.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class CategoryRequest {
+    @NotBlank(message = "Cannot be left blank!")
     private String name;
     private String description;
 

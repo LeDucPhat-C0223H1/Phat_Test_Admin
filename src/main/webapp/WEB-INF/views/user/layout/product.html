@@ -28,11 +28,11 @@
             Sắp xếp
             <ul>
                 <li>
-                    <a th:href="@{|?catId=${catId}&query=${query}&page=${currentPage}&size=${size}&sort=${sort}|}">
+                    <a th:href="@{|?catId=${catId}&query=${query}&page=${currentPage}&size=${size}&sort=${'false'}|}">
                     Giá tăng dần</a>
                 </li>
                 <li>
-                    <a th:href="@{|?catId=${catId}&query=${query}&page=${currentPage}&size=${size}&sort=${sort}|}">
+                    <a th:href="@{|?catId=${catId}&query=${query}&page=${currentPage}&size=${size}&sort=${'true'}|}">
                     Giá giảm dần</a>
                 </li>
             </ul>

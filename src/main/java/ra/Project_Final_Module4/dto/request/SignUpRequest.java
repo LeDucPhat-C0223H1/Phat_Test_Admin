@@ -30,7 +30,7 @@ public class SignUpRequest {
     private String email;
 
     @NotBlank(message = "Vui lòng không để trống!")
-    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b",message = "Số điện thoại không đúng định dạng!")
+    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{9})\\b",message = "Số điện thoại không đúng định dạng!")
     @Size(max = 11, message = "Số điện thoại chỉ có từ 10 hoặc 11 số!")
     private String phone;
 

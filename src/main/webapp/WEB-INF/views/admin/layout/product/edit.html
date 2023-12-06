@@ -19,6 +19,8 @@
         <div class="mb-3">
           <label for="name" class="form-label">Product Name</label>
           <input type="text" class="form-control" th:field="*{name}">
+          <span style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
         </div>
         <div class="mb-3">
           <label for="categoryName" class="form-label">Category</label>

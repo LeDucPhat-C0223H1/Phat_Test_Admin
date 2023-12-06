@@ -130,7 +130,7 @@ public class ProductDao implements IProductDao {
 
     @Override
     public List<ProductResponseClient> findAllActiveAndSort(boolean type) {
-        String sql = "{call Proce_FindAll_Product_Active_And_Search(?)}";
+        String sql = "{call Proce_FindAll_Product_Active_And_Sort(?)}";
         return jdbcTemplate.query(sql,new Object[]{type}, (rs, rowNum) -> {
             ProductResponseClient product = new ProductResponseClient();
             product.setId(rs.getLong("id"));

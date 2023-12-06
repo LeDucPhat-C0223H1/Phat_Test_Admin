@@ -1,9 +1,11 @@
 package ra.Project_Final_Module4.model;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 public class Category {
     private Long id;
+    @NotBlank(message = "Cannot be left blank!")
     private String name;
     private String description;
     private boolean status;

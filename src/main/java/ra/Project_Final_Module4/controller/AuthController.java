@@ -44,10 +44,16 @@ public class AuthController {
             return "auth/login";
         }
         session.setAttribute("userLogin", userLogin);
+
         if (userLogin.isRole()) {
             return "redirect:/admin";
         }
-        return "redirect:/product";
+
+        if (userLogin.isStatus()){
+            return "redirect:/product";
+        }
+        return "redirect:/auth/403";
+
     }
 
     // đăng xuất

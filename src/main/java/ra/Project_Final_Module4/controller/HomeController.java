@@ -35,8 +35,10 @@ public class HomeController {
             @RequestParam(name = "sort",defaultValue = "") String sortBy
     ) {
         Boolean typeSort = null;
+
         if (!sortBy.isEmpty()){
-            typeSort=Boolean.parseBoolean(sortBy);
+           typeSort = Boolean.parseBoolean(sortBy);
+
         }
 
         model.addAttribute("view","product");
