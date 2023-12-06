@@ -5,8 +5,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ra.Project_Final_Module4.dao.IUserDao;
-import ra.Project_Final_Module4.dto.response.ProductResponseAdmin;
-import ra.Project_Final_Module4.dto.response.UserEditResponse;
+import ra.Project_Final_Module4.dto.request.UserEditRequest;
 import ra.Project_Final_Module4.model.User;
 
 import java.util.Date;
@@ -160,9 +159,9 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public UserEditResponse showInforAccountById(Long id) {
+    public UserEditRequest showInforAccountById(Long id) {
         String sql = "{call Proce_Show_Infor_Account_By_Id(?)}";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper<>(UserEditResponse.class));
+        return jdbcTemplate.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper<>(UserEditRequest.class));
     }
 
 

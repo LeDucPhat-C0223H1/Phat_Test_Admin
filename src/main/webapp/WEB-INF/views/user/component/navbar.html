@@ -48,7 +48,7 @@
                     <div class="header-top__userInfor" style="display: none;">
                         <div>
                             <p th:text="${session.userLogin.fullName}"></p>
-                            <a th:href="@{/user/profile/{id} (id=${session.userLogin.getId()})}">Tài khoản</a>
+                            <a th:href="@{/user/profile}">Tài khoản</a>
                             <a href="/auth/logout" onclick="return confirm('Bạn thực sự muốn đăng xuất ?')">Đăng xuất</a>
                         </div>
                     </div>

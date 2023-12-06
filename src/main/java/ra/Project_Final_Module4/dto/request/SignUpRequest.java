@@ -8,39 +8,39 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class SignUpRequest {
-    @NotBlank(message = "Cannot be left blank.")
-    @Size(max = 30, message = "The username must have a maximum length of 30 characters.")
+    @NotBlank(message = "Vui lòng không để trống!")
+    @Size(max = 30, message = "Tên đăng nhập có độ dài tối đa 30 kí tự!")
     private String userName;
 
-    @NotBlank(message = "Cannot be left blank.")
-    @Size(min = 6, message = "The password must have a minimum of 6 characters.")
+    @NotBlank(message = "Vui lòng không để trống!")
+    @Size(min = 6, message = "Mật khẩu phải có tối thiểu 6 kí tự trở lên!")
     private String password;
 
-    @NotBlank(message = "Cannot be left blank.")
+    @NotBlank(message = "Vui lòng không để trống!")
     private String rePassword;
     //--------------------
 
-    @NotBlank(message = "Cannot be left blank.")
-    @Size(max = 50, message = "The fullname must have a maximum length of 50 characters.")
+    @NotBlank(message = "Vui lòng không để trống!")
+    @Size(max = 50, message = "Họ và tên có độ dài tối da 50 kí tự!")
     private String fullName;
 
-    @NotBlank(message = "Cannot be left blank.")
-    @Pattern(regexp = "^(.+)@(\\S+)$",message = "The email is invalid! abc@gmail.com")
-    @Size(max = 100, message = "The email must have a maximum length of 100 characters.")
+    @NotBlank(message = "Vui lòng không để trống!")
+    @Pattern(regexp = "^(.+)@(\\S+)$",message = "Email không đúng định dạng!")
+    @Size(max = 100, message = "Email có chiều dài tối da 100 kí tự!")
     private String email;
 
-    @NotBlank(message = "Cannot be left blank.")
-    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b",message = "The phone is invalid!")
-    @Size(max = 11, message = "The phone number must have either 10 or 11 digits.")
+    @NotBlank(message = "Vui lòng không để trống!")
+    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b",message = "Số điện thoại không đúng định dạng!")
+    @Size(max = 11, message = "Số điện thoại chỉ có từ 10 hoặc 11 số!")
     private String phone;
 
-    @NotBlank(message = "Cannot be left blank.")
+    @NotBlank(message = "Vui lòng không để trống!")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String birthday;
 
     private Boolean gender;
 
-    @NotBlank(message = "Cannot be left blank.")
+    @NotBlank(message = "Vui lòng không để trống!")
     private String address;
 
     public SignUpRequest() {

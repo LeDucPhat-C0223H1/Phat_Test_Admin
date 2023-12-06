@@ -8,10 +8,10 @@ import ra.Project_Final_Module4.dao.IUserDao;
 import ra.Project_Final_Module4.dto.request.LoginRequest;
 import ra.Project_Final_Module4.dto.request.SignUpRequest;
 import ra.Project_Final_Module4.dto.request.UserEditRequest;
-import ra.Project_Final_Module4.dto.response.UserEditResponse;
 import ra.Project_Final_Module4.model.User;
 import ra.Project_Final_Module4.service.IUserService;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +25,9 @@ public class UserService implements IUserService {
     private UploadService uploadService;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private HttpSession session;
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     @Override
     public List<User> findAll() {
         return userDao.findAll();
@@ -38,7 +40,6 @@ public class UserService implements IUserService {
 
     @Override
     public void register(SignUpRequest signUpRequest) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date birthday = format.parse(signUpRequest.getBirthday());
             userDao.save(
@@ -74,25 +75,30 @@ public class UserService implements IUserService {
 
     @Override
     public void update(UserEditRequest userEditRequest, MultipartFile fileAvartar) {
+        User userLogin = (User) session.getAttribute("userLogin");
         if(!fileAvartar.isEmpty()){
             userEditRequest.setAvatarUrl(uploadService.uploadFileImage(fileAvartar));
         }
-        userEditRequest.setModifiedAt(new Date());
-        userDao.save(
-                new User(
-                        userEditRequest.getId(),
-                        userEditRequest.getAvatarUrl(),
-                        //
-                        userEditRequest.getFullName(),
-                        userEditRequest.getEmail(),
-                        userEditRequest.getPhone(),
-                        userEditRequest.getBirthday(),
-                        userEditRequest.getGender(),
-                        userEditRequest.getAddress(),
-                        //
-                        new Date()
-                )
-        );
+//        userEditRequest.setModifiedAt(new Date());
+
+//            Date birthday = format.parse(userEditRequest.getBirthday());
+            userDao.save(
+                    new User(
+                            userLogin.getId(),
+                            userEditRequest.getAvatarUrl(),
+                            //
+                            userEditRequest.getFullName(),
+                            userEditRequest.getEmail(),
+                            userEditRequest.getPhone(),
+                            userEditRequest.getBirthday(),
+                            userEditRequest.getGender(),
+                            userEditRequest.getAddress(),
+                            //
+                            new Date()
+                    )
+            );
+
+
 
     }
 
@@ -123,7 +129,7 @@ public class UserService implements IUserService {
 
     // hiển thị nhưng thông tin được cho người dùng edit
     @Override
-    public UserEditResponse showInforAccount(Long id) {
+    public UserEditRequest showInforAccount(Long id) {
         return userDao.showInforAccountById(id);
     }
 

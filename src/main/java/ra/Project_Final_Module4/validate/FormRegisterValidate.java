@@ -21,23 +21,23 @@ public class FormRegisterValidate implements Validator {
         SignUpRequest signUpRequest = (SignUpRequest) target;
         // trùng lặp username
         if(userService.checkExistByUserName(signUpRequest.getUserName())){
-            errors.rejectValue("userName","userName", "The username already exists.");
+            errors.rejectValue("userName","userName", "Tên đăng nhập đã tồn tại!");
         }
         // trùng lặp email
         if(userService.checkExistByEmail(signUpRequest.getEmail())){
-            errors.rejectValue("email","email" ,"The email has already been registered.");
+            errors.rejectValue("email","email" ,"Email đã được đăng ký!");
         }
         // trùng lặp phone
         if(userService.checkExistByPhone(signUpRequest.getPhone())){
-            errors.rejectValue("phone", "phone","The phone number has already been registered");
+            errors.rejectValue("phone", "phone","Số điện thoại đã được đăng ký!");
         }
         // nhập password rỗng
         if(signUpRequest.getPassword().equals("")){
-            errors.rejectValue("password","assword","Can be not left blank");
+            errors.rejectValue("password","password","Vui lòng không để trống!");
         }
         // nhập lại password
         if(!signUpRequest.getRePassword().equals(signUpRequest.getPassword())){
-            errors.rejectValue("rePassword","rePassword","The re-entered password does not match.");
+            errors.rejectValue("rePassword","rePassword","Nhập lại mật khẩu không khớp!");
         }
     }
 }

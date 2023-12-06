@@ -4,7 +4,6 @@ import org.springframework.web.multipart.MultipartFile;
 import ra.Project_Final_Module4.dto.request.LoginRequest;
 import ra.Project_Final_Module4.dto.request.SignUpRequest;
 import ra.Project_Final_Module4.dto.request.UserEditRequest;
-import ra.Project_Final_Module4.dto.response.UserEditResponse;
 import ra.Project_Final_Module4.model.User;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public interface IUserService {
     int getTotalPage(String query,int size);
 
     // hiển thị nhưng thông tin được cho người dùng edit
-    UserEditResponse showInforAccount(Long id);
+    UserEditRequest showInforAccount(Long id);
 
     boolean checkExistByUserName(String userName);
     boolean checkExistByEmail(String email);

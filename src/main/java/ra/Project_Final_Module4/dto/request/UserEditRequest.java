@@ -2,19 +2,33 @@ package ra.Project_Final_Module4.dto.request;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class UserEditRequest {
     private Long id;
     private String avatarUrl;
     //--------------------
+    @NotBlank(message = "Vui lòng không để trống!")
+    @Size(max = 50, message = "Họ và tên mới dài hơn 50 kí tự!")
     private String fullName;
+
+    @NotBlank(message = "Vui lòng không để trống!")
+    @Pattern(regexp = "^(.+)@(\\S+)$",message = "Email mới không đúng định dạng!")
+    @Size(max = 100, message = "Email mới dài hơn 100 kí tự!")
     private String email;
+
+    @NotBlank(message = "Vui lòng không để trống!")
+    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b",message = "Số điện thoại mới không đúng định dạng!")
+    @Size(max = 11, message = "Số điện thoại mới dài hơn 11 số!")
     private String phone;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     private Boolean gender;
+    @NotBlank(message = "Vui lòng không để trống!")
     private String address;
     //--------------------
     private Date modifiedAt;
@@ -32,14 +46,6 @@ public class UserEditRequest {
         this.gender = gender;
         this.address = address;
         this.modifiedAt = modifiedAt;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getAvatarUrl() {

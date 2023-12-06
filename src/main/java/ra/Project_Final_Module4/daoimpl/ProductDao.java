@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import ra.Project_Final_Module4.dao.IProductDao;
 import ra.Project_Final_Module4.dto.response.ProductResponseAdmin;
 import ra.Project_Final_Module4.dto.response.ProductResponseClient;
-import ra.Project_Final_Module4.dto.response.UserEditResponse;
 import ra.Project_Final_Module4.model.Product;
 
 import java.util.List;

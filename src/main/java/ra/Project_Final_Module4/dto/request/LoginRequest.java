@@ -3,7 +3,7 @@ package ra.Project_Final_Module4.dto.request;
 import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
-    @NotBlank(message = "Vui lòng không để trống!.")
+    @NotBlank(message = "Vui lòng không để trống!")
     private String userName;
     @NotBlank(message = "Vui lòng không để trống!")
     private String password;
